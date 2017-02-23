@@ -15,3 +15,17 @@
 	margin-right: 32px;
 }
 
+.sign-icon {
+  margin-right: 10px;
+}
+
+.form-card {
+  margin: 40px auto;
+  background-color: white;
+  max-width: 800px;
+}
+
+.field-label {
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -3,77 +3,267 @@
 <head>
   <title>Entact</title>
 
+  <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-
-
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="411092546108-jukadttq51mtpt5nc6huvdjhcphh246g.apps.googleusercontent.com">
 
   <!-- CSS Links -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css" />
 
   <!-- Local/Custom CSS Links -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_MDL.css">
+  <link rel="stylesheet" href="bootstrap.css">
 
   <!-- JavaScript Links -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <script src='https://www.gstatic.com/firebasejs/3.6.9/firebase.js'></script>
+  <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
 
   <!-- Local/Custom JavaScript Links -->
-  <script src="js/createEvent.js"></script>
   <script src="js/index.js" type="text/javascript"></script>
+  <script src="js/createEvent.js" type="text/javascript"></script>
+  <script src="js/loginPage.js" type="text/javascript"></script>
 
-
-  <!-- Font -->
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Pacifico|Yellowtail" type="text/css">
-
-
+  <!-- Fonts -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto|Pacifico|Yellowtail" type="text/css">
 </head>
 
+
 <body>
-<!-- The drawer is always open in large screens. The header is always shown,
-  even in small screens. -->
+
+<!-- Layout Wrapper -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
+  <!-- Page Header -->
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-
+      <!-- Header Title -->
       <span class="mdl-layout-title nav-header">Entact</span>
 
       <div class="mdl-layout-spacer"></div>
 
+      <!-- Sign in Link -->
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+              href=""
+              onclick="onSignIn()">
+        Sign in
+      </button>
     </div>
   </header>
+  <!-- End of Page Header -->
 
+
+  <!-- Sidebar -->
   <div class="mdl-layout__drawer">
-
     <nav class="mdl-navigation">
-
-      <a class="mdl-navigation__link nav-link" href="">
-       <i class="material-icons nav-icon" role="presentation">event</i>Join Events
+      <!-- Join Events Link -->
+      <a class="mdl-navigation__link nav-link" href="browseEvents.html">
+       <i class="material-icons nav-icon">event</i>Join Events
       </a>
-
-      <a class="mdl-navigation__link nav-link" href="">
+      <!-- Create Event Link -->
+      <a class="mdl-navigation__link nav-link" href="createEvent.html">
         <i class="material-icons nav-icon">add</i>Create Event
       </a>
-
-      <a class="mdl-navigation__link nav-link" href="">
+      <!-- My Events Link -->
+      <a class="mdl-navigation__link nav-link" href="joinedEvents.html">
         <i class="material-icons nav-icon">book</i>My Events
       </a>
-
-      <a class="mdl-navigation__link nav-link" href="">
+      <!-- Logout Link -->
+      <a class="mdl-navigation__link nav-link" id="logOut" onClick="return popup(this, 'notes')" href="https://accounts.google.com/logout">
         <i class="material-icons nav-icon">exit_to_app</i>Logout
       </a>
-
     </nav>
   </div>
-  <main class="mdl-layout__content">
-    <div class="page-content"><!-- Your content goes here --></div>
+  <!-- End of Sidebar -->
+
+
+  <!-- _________________________ PAGE CONTENT STARTS HERE _________________________ -->
+  <main class="mdl-layout__content mdl-layout--fixed-drawer mdl-color--grey">
+    <div class="page-content">
+      <!-- Your content goes here -->
+
+      <div class="mdl-grid mdl-shadow--4dp form-card">
+      <!-- Form Title -->
+      <h3 class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet mdl-cell--stretch mdl-typography--text-center">Create Event</h3>
+
+      <!-- Form Body -->
+      <form class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--middle mdl-typography--text-center"action="#">
+
+        <!-- Event Name -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="name" placeholder="(e.g. Study Group, Kayaking Trip)">
+          <label class="mdl-textfield__label field-label" for="name">Event Name</label>
+        </div>
+
+        <!-- Details -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <textarea class="mdl-textfield__input" type="text" id="details"placeholder="(e.g. Study Group for CSE 170 Final)"></textarea>
+          <label class="mdl-textfield__label field-label" for="name">Description</label>
+        </div>
+
+        <!-- Creator -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="creator" placeholder="(e.g. John Doe, UCSD VR Club)">
+          <label class="mdl-textfield__label field-label" for="name">Creator</label>
+        </div>
+
+        <!-- Location -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="location" placeholder="(e.g. Geisel Library, Mission Bay)">
+          <label class="mdl-textfield__label field-label" for="name">Location</label>
+        </div>
+
+        <!-- Date -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="date" id="date" placeholder="">
+          <label class="mdl-textfield__label field-label" for="name">Date</label>
+        </div>
+
+        <!-- Time -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="time" id="time" placeholder="">
+          <label class="mdl-textfield__label field-label" for="name">Time</label>
+        </div>
+
+        <!-- Items -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="items" placeholder="(e.g. Football, Snacks, Napkins)">
+          <label class="mdl-textfield__label field-label" for="name">Items</label>
+        </div>
+
+        <!-- Members -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="number" id="members"placeholder="Maximum number of members">
+          <label class="mdl-textfield__label field-label" for="name">Members</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                data-toggle="modal" data-target="#MyModal" onclick="submitClick()" id="create-event">
+          Create Event
+        </button>
+
+        <!-- Confirmation Dialog -->
+        <dialog class="mdl-dialog">
+          <h4 class="mdl-dialog__title">Creation Confirmation</h4>
+          <div class="mdl-dialog__content">
+            <div class="mdl-typography--text-center" style="color:black">
+              Thank you for creating the event!
+            </div>
+            <hr>
+            <div class="mdl-typography--text-center" style="color:blue">
+              The App That Gets You Intact
+            </div>
+          </div>
+          <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button close" ><i class="material-icons mdl-button--mini-icon">clear</i>Close</button>
+          </div>
+        </dialog>
+        <!-- End of Confirmation Dialog -->
+
+
+      </form>
+    </div>
+    </div>
   </main>
+  <!-- _________________________ PAGE CONTENT ENDS HERE _________________________ -->
+
 </div>
+<!-- End of Layout Wrapper -->
+
+<!-- Google Autocomplete Location Script -->
+<script>
+  var autocomplete;
+
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('location')),
+        {types: ['geocode']});
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    autocomplete.addListener('place_changed', fillInAddress);
+  }
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    }
+  }
+
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjGTJDnZi6Jyi6r_zwHh82qAScwf9JIDE&libraries=places&callback=initAutocomplete" async defer></script>
+
+<!-- End of Google Autocomplete Location Script -->
+
+<!-- Dialog Pop-up Script -->
+<script>
+  var dialog = document.querySelector('dialog');
+  var showDialogButton = document.querySelector('#create-event');
+  if (! dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+  }
+  showDialogButton.addEventListener('click', function() {
+    dialog.showModal();
+  });
+  dialog.querySelector('.close').addEventListener('click', function() {
+    dialog.close();
+  });
+</script>
+<!-- End of Dialog Pop-up Script -->
+
+<!-- Popup Window Script -->
+<script type="text/javascript">
+  function popup(mylink, windowname) {
+    if (! window.focus)
+      return true;
+      var href;
+    if (typeof(mylink) == 'string')
+      href=mylink;
+    else href=mylink.href;
+    window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
+      return false; }
+</script>
+<!-- End of Popup Window Script -->
 
 
 </body>
