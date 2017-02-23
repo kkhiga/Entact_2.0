@@ -3,70 +3,79 @@
 <head>
   <title>Entact</title>
 
+  <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-
-
 
   <!-- CSS Links -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"> -->
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css" />
 
+  <!-- Local/Custom CSS -->
   <link rel="stylesheet" href="style.css">
-
-
 
   <!-- JS Links -->
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
   <!-- Font -->
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Pacifico|Yellowtail" type="text/css">
+</head>
 
 
-  </head>
 <body>
-<!-- The drawer is always open in large screens. The header is always shown,
-  even in small screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 
+<!-- Layout Wrapper -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  
+  <!-- Page Header -->
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-
+      <!-- Header Title -->
       <span class="mdl-layout-title nav-header">Entact</span>
 
       <div class="mdl-layout-spacer"></div>
-      
+
+      <!-- Sign in Link -->
+      <a class="mdl-navigation__link" href="">Sign in</a>
     </div>
   </header>
+  <!-- End of Page Header -->
 
+
+  <!-- Sidebar -->
   <div class="mdl-layout__drawer">
-
     <nav class="mdl-navigation">
-
+      <!-- Join Events Link -->
       <a class="mdl-navigation__link nav-link" href="">
-       <i class="material-icons nav-icon" role="presentation">event</i>Join Events
+       <i class="material-icons nav-icon">event</i>Join Events
       </a>
-
+      <!-- Create Event Link -->
       <a class="mdl-navigation__link nav-link" href="">
         <i class="material-icons nav-icon">add</i>Create Event
       </a>
-      
+      <!-- My Events Link -->
       <a class="mdl-navigation__link nav-link" href="">
         <i class="material-icons nav-icon">book</i>My Events
       </a>
-
+      <!-- Logout Link -->
       <a class="mdl-navigation__link nav-link" href="">
         <i class="material-icons nav-icon">exit_to_app</i>Logout
       </a>
-
     </nav>
   </div>
-  <main class="mdl-layout__content">
-    <div class="page-content"><!-- Your content goes here --></div>
-  </main>
-</div>
+  <!-- End of Sidebar -->
 
+
+  <!-- _________________________ PAGE CONTENT STARTS HERE _________________________ -->
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <!-- Your content goes here --></div>
+  </main>
+  <!-- _________________________ PAGE CONTENT ENDS HERE _________________________ -->
+
+</div>
+<!-- End of Layout Wrapper -->
 
 </body>
 </html>
